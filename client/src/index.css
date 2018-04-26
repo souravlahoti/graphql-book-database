@@ -1,0 +1,59 @@
+body {
+  background: #eee;
+  font-family: 'Nunito', sans-serif;
+}
+
+.App{
+  width: 70%;
+}
+
+#add-book {
+  position: fixed;
+  margin: 2%;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 24%;
+  box-shadow: -2px -3px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+#book-detail {
+  color: white;
+  font-size: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  background: #AD1457;
+  height: 100%;
+  overflow: auto;
+  padding: 2%;
+  box-shadow: -2px -3px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+#book-list li{
+  display: inline-block;
+  cursor: pointer;
+  margin: 12px;
+  font-size: 20px;
+  border: 1px solid #AD1457;
+  color: #AD1457;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3)
+}
+
+#other-books li{
+  color: white;
+  display: list-item;
+  border: 0px;
+  box-shadow: none;
+}
+
+#headline{
+  margin: 10px;
+  text-align: center;
+  font-size: 40px;
+}

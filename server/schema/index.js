@@ -8,9 +8,10 @@ const {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLString,
-    GraphQLID,
     GraphQLInt,
-    GraphQLList
+    GraphQLID,
+    GraphQLList,
+    GraphQLNonNull
 } = graphql
 
 
@@ -32,9 +33,7 @@ const BookType = new GraphQLObjectType({
         author: {
             type: AuthorType,
             resolve(parent, args) {
-                return Author.findById({
-                    _id: parent.authorId
-                })
+                return Author.findById(parent.authorId)
             }
         }
     })
@@ -76,9 +75,7 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve(parent, args) {
                 //do somethngs 
-                return Book.findById({
-                    _id: args.id
-                })
+                return Book.findById(args.id)
             }
         },
 
@@ -90,9 +87,7 @@ const RootQuery = new GraphQLObjectType({
                 }
             },
             resolve(parent, args) {
-                return Author.findById({
-                    _id: args.id
-                })
+                return Author.findById(args.id)
             }
         },
         authors: {
@@ -116,9 +111,9 @@ const Mutation = new GraphQLObjectType({
         addBook:{
             type: BookType,
             args: {
-                title: {type: GraphQLString},
-                genre: {type: GraphQLString},
-                authorId: {type: GraphQLString},
+                title: {type: new GraphQLNonNull(GraphQLString)},
+                genre: {type: new GraphQLNonNull(GraphQLString)},
+                authorId: {type: new GraphQLNonNull(GraphQLID)},
             },
             resolve(parents, args){
                 let book = new Book({
@@ -132,7 +127,7 @@ const Mutation = new GraphQLObjectType({
         addAuthor:{
             type: AuthorType,
             args: {
-                name: {type: GraphQLString},
+                name: {type: new GraphQLNonNull(GraphQLString)},
                 age: {type: GraphQLInt}
             },
             resolve(parents, args){
